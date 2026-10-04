@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
 
   boolean someSensorIsActive = false;
 
-  XboxController driverController = new XboxController(0);
+  PS5Controller driverController = new PS5Controller(0);
 
   TalonFX motor1 = new TalonFX(0);
   /**
@@ -48,14 +48,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("What auto will i use", "My Auto");
     SmartDashboard.putNumber("The answer to my problems", someSensorValues + 6.7);
     SmartDashboard.putBoolean("do i want to touch grass?", isRaining && hasUmbrella);
-  
-
-    if (someSensorIsActive == true) {
-      SmartDashboard.putString("this very tuff custom auto will be chosen", kCustomAuto);
-    } else {
-      SmartDashboard.putString("this lame default auto will be chosen ;c", kDefaultAuto);
-    }
-
+    
   }
 
   /**
@@ -75,6 +68,12 @@ public class Robot extends TimedRobot {
     /* OR motor1.setControl(new DutyCycleOut(driverController.getLeftX())); */
     SmartDashboard.putNumber("DutyCycleMotorApplied", motor1.getDutyCycle().getValueAsDouble());
     SmartDashboard.putNumber("VoltageMotorApplied", motor1.getMotorVoltage().getValueAsDouble());
+    
+        if (someSensorIsActive == true) {
+      SmartDashboard.putString("this very tuff custom auto will be chosen", kCustomAuto);
+    } else {
+      SmartDashboard.putString("this lame default auto will be chosen ;c", kDefaultAuto);
+    }
 
   }
 
@@ -116,7 +115,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if (driverController.getAButton()) {
+    if (driverController.getCrossButton()) {
       someSensorIsActive = true;
   } else {
       someSensorIsActive = false;
